@@ -49,7 +49,8 @@ export default {
   },
   methods: {
     username(username) {
-      return `/users/${username}`
+      const baseUrl = process.env.BASE_URL || ''
+      return `${baseUrl}/users/${username}`
     }
   }
 }
