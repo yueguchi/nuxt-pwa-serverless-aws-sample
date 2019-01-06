@@ -1,44 +1,58 @@
-const pkg = require('./package')
+const { ENV } = require('./configs/env')
+
+const routerConfig = {}
+if (ENV.BASE_URL) {
+  routerConfig.base = ENV.BASE_URL
+}
 
 module.exports = {
   mode: 'universal',
+
   srcDir: 'app/',
 
-  /*
-  ** Headers of the page
-  */
-  head: {
-    title: pkg.name,
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
-    ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+  router: {
+    ...routerConfig
+  },
+
+  render: {
+    /**
+     * compression を通すと API Gateway がレスポンスを返せないので
+     * なにもしないミドルウェアを定義しておく
+     */
+    compressor: (req, res, next) => {
+      next()
+    }
   },
 
   /*
-  ** Customize the progress-bar color
-  */
+   ** Headers of the page
+   */
+  head: {
+    title: 'nuxt-pwa-serveless-sample',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: 'nuxt-pwa-serveless-sample' }
+    ],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+  },
+  /*
+   ** Customize the progress bar color
+   */
   loading: { color: '#fff' },
+  /*
+   ** Global CSS
+   */
+  css: [],
 
   /*
-  ** Global CSS
-  */
-  css: [
-  ],
+   ** Plugins to load before mounting the App
+   */
+  plugins: [],
 
   /*
-  ** Plugins to load before mounting the App
-  */
-  plugins: [
-  ],
-
-  /*
-  ** Nuxt.js modules
-  */
+   ** Nuxt.js modules
+   */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
@@ -66,14 +80,14 @@ module.exports = {
   },
 
   /*
-  ** Build configuration
-  */
+   ** Build configuration
+   */
   build: {
     /*
-    ** You can extend webpack config here
-    */
+     ** You can extend webpack config here
+     */
     extend(config, ctx) {
-      
+
     }
   }
 }
