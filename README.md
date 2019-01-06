@@ -19,4 +19,19 @@ $ yarn start
 $ yarn run generate
 ```
 
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+
+# PWA
+
+```
+npm run pwa-dev
+```
+
+# deploy
+
+serverless.ymlのprofileを書き換えたら...
+```
+npm run deploy:api_gw
+```
+
+これでAWSにCloudFormationDesignerTemplateがupされ、APIGatewayやLambdaが作られ、
+S3にpackagingされたmoduleがuploadされる。

@@ -1,7 +1,6 @@
 'use strict'
 
 const endpointEnv = process.env.ENDPOINT_ENV || 'localhost'
-console.log(endpointEnv)
 
 const ENV = {
   STAGE: 'dev',
@@ -13,8 +12,6 @@ const ENV = {
 if (endpointEnv === 'api_gw') {
   ENV.BASE_URL = `/${ENV.STAGE}/`
 }
-
-console.log(ENV.BASE_URL)
 
 // for serverless.yml
 const exporter = () => {
