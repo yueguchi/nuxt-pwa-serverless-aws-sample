@@ -1,6 +1,8 @@
 const { ENV } = require('./configs/env')
 
-const routerConfig = {}
+const routerConfig = {
+  middleware: 'redirectAppRoot'
+}
 if (ENV.BASE_URL) {
   routerConfig.base = ENV.BASE_URL
 }
